@@ -85,7 +85,25 @@ public class GiftDao {
 		}				
 	}
 	
+	public List<Gift> getHql(String hql){
+		try(Session session = 
+				HibernateUtil.getSessionFactory().openSession()){
+			return session.createQuery(hql, Gift.class).getResultList();
+		}catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}				
+	}
 	
+	public List<Gift> getSQL(String sql){
+		try(Session session = 
+				HibernateUtil.getSessionFactory().openSession()){
+			return session.createNativeQuery(sql, Gift.class).getResultList();
+		}catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}				
+	}
 	
 	
 }
