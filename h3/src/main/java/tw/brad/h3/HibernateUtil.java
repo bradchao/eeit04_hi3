@@ -1,19 +1,35 @@
 package tw.brad.h3;
 
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import tw.brad.model.Member;
+
 public class HibernateUtil {
 	private static SessionFactory sessionFactory;
+	//private static StandardServiceRegistry registry;
 	
 	public static SessionFactory getSessionFactory() {
 		if (sessionFactory == null) {
-			Configuration config = new Configuration();
-			config.configure("hibernate.cfg.xml");
-			
-			sessionFactory = config.buildSessionFactory();
+			try {
+				Configuration config = new Configuration();
+				config.configure("hibernate.cfg.xml");
+				
+				config.addAnnotatedClass(Member.class);
+				
+//				registry = new StandardServiceRegistryBuilder()
+//						.applySettings(config.getProperties())
+//						.build();
+//				sessionFactory = config.buildSessionFactory(registry);
+				
+				sessionFactory = config.buildSessionFactory();
+				
+			}catch(Exception e) {
+				System.out.println(e);
+			}
 		}
 		return sessionFactory;
 	}
