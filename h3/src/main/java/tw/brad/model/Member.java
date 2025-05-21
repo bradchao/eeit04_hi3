@@ -24,6 +24,13 @@ public class Member {
 	@Column(name = "cname")
 	private String cname;
 	
+	public Member() {}
+	public Member(long id, String account, String passwd, String cname) {
+		this.id = id;
+		this.account = account;
+		this.passwd = passwd;
+		this.cname = cname;
+	}
 	
 	public long getId() {
 		return id;
@@ -49,7 +56,6 @@ public class Member {
 	public void setCname(String cname) {
 		this.cname = cname;
 	}
-	
 	
 	
 }
