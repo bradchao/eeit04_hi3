@@ -1,5 +1,7 @@
 package tw.brad.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -24,17 +26,6 @@ public class MemberDao {
 				transaction.rollback();
 			}
 		}
-	}
-	
-	public Member getById(int id) {
-		try(Session session = 
-				HibernateUtil.getSessionFactory().openSession()){
-			
-			return session.get(Member.class, id);
-		}catch(Exception e) {
-			System.out.println(e);
-			return null;
-		}		
 	}
 	
 	public void delete(Member member) {
@@ -70,6 +61,29 @@ public class MemberDao {
 			}
 		}		
 	}
+	
+	public Member getById(int id) {
+		try(Session session = 
+				HibernateUtil.getSessionFactory().openSession()){
+			
+			return session.get(Member.class, id);
+		}catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}		
+	}
+	
+	public List<Member> getAll(){
+		try(Session session = 
+				HibernateUtil.getSessionFactory().openSession()){
+			String hql = "FROM Member";
+			return session.createQuery(hql, Member.class).getResultList();
+		}catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}				
+	}
+	
 	
 	
 	

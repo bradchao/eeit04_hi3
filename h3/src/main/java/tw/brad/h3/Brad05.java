@@ -1,5 +1,7 @@
 package tw.brad.h3;
 
+import java.util.List;
+
 import tw.brad.apis.BCrypt;
 import tw.brad.dao.MemberDao;
 import tw.brad.model.Member;
@@ -14,7 +16,7 @@ public class Brad05 {
 		
 		MemberDao dao = new MemberDao();
 		//dao.save(member);
-		dao.update(member);
+		//dao.update(member);
 		
 		Member member2 = dao.getById(12);
 		if (member2 != null) {
@@ -27,6 +29,13 @@ public class Brad05 {
 			member3.setCname("湯尼");
 			dao.update(member3);
 		}		
+		System.out.println("---");
+		
+		List<Member> members = dao.getAll();
+		for (Member member4: members) {
+			System.out.printf("%d, %s : %s\n", 
+				member4.getId(), member4.getAccount(), member4.getCname());
+		}
 		
 
 		
