@@ -23,6 +23,23 @@ public class MemberDao {
 			transaction.commit();
 		}catch(Exception e) {
 			System.out.println(e);
+			if (transaction != null) {
+				transaction.rollback();
+			}
 		}
 	}
+	
+	public Member getById(int id) {
+		try(Session session = 
+				HibernateUtil.getSessionFactory().openSession()){
+			
+			return session.get(Member.class, id);
+		}catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}		
+	}
+	
+	
+	
 }

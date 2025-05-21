@@ -11,7 +11,13 @@ public class Brad05 {
 		member.setCname("Mark");
 		
 		MemberDao dao = new MemberDao();
-		dao.save(member);
+		//dao.save(member);
+		
+		Member member2 = dao.getById(12);
+		if (member2 != null) {
+			System.out.println(member2.getAccount());
+		}
+		
 		
 	}
 }
