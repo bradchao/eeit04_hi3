@@ -15,7 +15,7 @@ public class Gift {
 	@Column(name = "id")
 	private long id;
 	
-	@Column(name = "id")
+	@Column(name = "name")
 	private String name;
 	
 	@Column(name = "feature")
