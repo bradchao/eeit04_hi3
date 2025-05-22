@@ -85,6 +85,10 @@ public class MemberDao {
 	}
 	
 	
+	public List<Member> findByTel(){
+		return null;
+	}
+	
 	
 	
 }
