@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,10 +20,6 @@ public class Order {
 	@Column(name = "order_date")
 	private String orderDate;
 	
-	
-	@Column(name = "cust_id")
-	private long custId;
-
 	public long getId() {
 		return id;
 	}
@@ -38,15 +36,9 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 
-	public long getCustId() {
-		return custId;
-	}
-
-	public void setCustId(long custId) {
-		this.custId = custId;
-	}
-	
 	//----------------------
+	@ManyToOne
+	@JoinColumn(name = "cust_id")
 	private Cust cust;
 
 	public Cust getCust() {
