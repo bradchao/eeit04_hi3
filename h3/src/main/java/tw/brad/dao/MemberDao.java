@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import tw.brad.apis.BCrypt;
 import tw.brad.h3.HibernateUtil;
@@ -84,9 +85,21 @@ public class MemberDao {
 		}				
 	}
 	
-	
-	public List<Member> findByTel(){
-		return null;
+	// MemberInfo.tel Like
+	public List<Member> findByTel(String keyword){
+		
+		String hql = "FROM Member m WHERE m.memberInfo.tel LIKE :key";
+		try(Session session = 
+				HibernateUtil.getSessionFactory().openSession()){
+			
+			Query<Member> query = session.createQuery(hql, Member.class);
+			query.setParameter("key", "%" + keyword + "%");
+			
+			return query.list();
+		}catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}			
 	}
 	
 	
