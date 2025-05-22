@@ -1,5 +1,7 @@
 package tw.brad.model;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +20,7 @@ public class Order {
 	private long id;
 	
 	@Column(name = "order_date")
-	private String orderDate;
+	private Date orderDate;
 	
 	public long getId() {
 		return id;
@@ -28,11 +30,11 @@ public class Order {
 		this.id = id;
 	}
 
-	public String getOrderDate() {
+	public Date getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(String orderDate) {
+	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
 
