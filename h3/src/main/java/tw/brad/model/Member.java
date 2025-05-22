@@ -26,6 +26,19 @@ public class Member {
 	@Column(name = "cname")
 	private String cname;
 	
+	//----------------
+	@Column(name = "icon")
+	private byte[] myicon;
+	
+	public byte[] getMyicon() {
+		return myicon;
+	}
+	public void setMyicon(byte[] myicon) {
+		this.myicon = myicon;
+	}
+	
+	//----------------
+	
 	public Member() {}
 	public Member(long id, String account, String passwd, String cname) {
 		this.id = id;

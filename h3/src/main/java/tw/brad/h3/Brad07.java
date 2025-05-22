@@ -1,5 +1,7 @@
 package tw.brad.h3;
 
+import java.io.FileInputStream;
+
 import tw.brad.apis.BCrypt;
 import tw.brad.dao.MemberDao;
 import tw.brad.model.Member;
@@ -11,9 +13,18 @@ public class Brad07 {
 		MemberDao memberDao = new MemberDao();
 		
 		Member member = new Member();
-		member.setAccount("Nick");
+		member.setAccount("newda");
 		member.setPasswd(BCrypt.hashpw("123456", BCrypt.gensalt()));
-		member.setCname("Nick");
+		member.setCname("Newda");
+		//---------
+		try {
+			FileInputStream fin = new FileInputStream("dir1/10.0.104.183.png");
+			byte[] da = fin.readAllBytes();
+			member.setMyicon(da);
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		//---------
 		
 		MemberInfo info = new MemberInfo();
 		info.setBirthday("1999-02-03");
