@@ -1,5 +1,6 @@
 package tw.brad.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,9 +25,6 @@ public class Member {
 	
 	@Column(name = "cname")
 	private String cname;
-	
-	@OneToOne(mappedBy = "member")
-	private MemberInfo memberInfo;
 	
 	public Member() {}
 	public Member(long id, String account, String passwd, String cname) {
@@ -60,11 +58,18 @@ public class Member {
 	public void setCname(String cname) {
 		this.cname = cname;
 	}
+	
+	//---------------------------------------
+	
+	@OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
+	private MemberInfo memberInfo;	
+	
 	public MemberInfo getMemberInfo() {
 		return memberInfo;
 	}
 	public void setMemberInfo(MemberInfo memberInfo) {
 		this.memberInfo = memberInfo;
+		memberInfo.setMember(this);
 	}
 	
 	
