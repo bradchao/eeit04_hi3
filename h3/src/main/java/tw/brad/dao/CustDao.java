@@ -88,6 +88,46 @@ public class CustDao {
 		
 	}
 	
+	public void removeOrderFromCust(long custId, long orderId) {
+		Transaction transaction = null;
+		try(Session session = 
+				HibernateUtil.getSessionFactory().openSession()){
+			transaction = session.beginTransaction();
+			
+			Cust cust = session.get(Cust.class, custId);
+			Order targetOrder = null;
+			for (Order order : cust.getOrders()) {
+				if (order.getId() == orderId) {
+					targetOrder = order;
+					break;
+				}
+			}
+			
+			if (targetOrder != null) {
+				cust.removeOrder(targetOrder);
+			}
+			
+			session.merge(cust);
+			
+			
+			transaction.commit();
+		}catch(Exception e) {
+			System.out.println(e);
+			if (transaction != null) {
+				transaction.rollback();
+			}
+		}				
+	} 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
