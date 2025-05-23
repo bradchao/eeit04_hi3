@@ -2,6 +2,7 @@ package tw.brad.h3;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import tw.brad.dao.SCDao;
 import tw.brad.model.Course;
@@ -16,7 +17,9 @@ public class Brad15 {
 			
 			List<Course> courses = dao.getAllCourse();
 			for (Course course : courses) {
-				System.out.printf("%d. %s\n", course.getId(), course.getCname());
+				if (!isExist(s1, course.getStudents())) {
+					System.out.printf("%d. %s\n", course.getId(), course.getCname());
+				}
 			}
 			
 			Scanner scanner = new Scanner(System.in);
@@ -31,4 +34,19 @@ public class Brad15 {
 			System.out.println("Student NOT FOUND");
 		}
 	}
+	
+	private static boolean isExist(Student s, Set<Student> students) {
+		boolean ret = false;
+		for (Student student: students) {
+			if (student.getId() == s.getId()) {
+				ret = true;
+				break;
+			}
+		}
+		
+		return ret;
+	}
+	
+	
+	
 }
