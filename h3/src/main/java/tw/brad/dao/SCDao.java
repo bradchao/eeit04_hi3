@@ -1,5 +1,7 @@
 package tw.brad.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -93,4 +95,18 @@ public class SCDao {
 			return null;
 		}		
 	}	
+	
+	public List<Course> getAllCourse(){
+		try(Session session = 
+				HibernateUtil.getSessionFactory().openSession()){
+			return session.createQuery("FROM Course", Course.class).getResultList();
+		}catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}			
+	}
+	
+	
+	
+	
 }
