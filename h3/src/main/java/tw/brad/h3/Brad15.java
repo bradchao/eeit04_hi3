@@ -11,7 +11,7 @@ import tw.brad.model.Student;
 public class Brad15 {
 	public static void main(String[] args) {
 		SCDao dao = new SCDao();
-		Student s1 = dao.getById(1);
+		Student s1 = dao.getById(2);
 		if (s1 != null) {
 			System.out.printf("Welcome, %s\n", s1.getSname());
 			
@@ -23,9 +23,12 @@ public class Brad15 {
 			}
 			
 			Scanner scanner = new Scanner(System.in);
-			System.out.print("Which course? ");
-			int cid = scanner.nextInt();
-			s1.addCourse(dao.getCourseById(cid));
+			while (true) {
+				System.out.print("Which course? ");
+				int cid = scanner.nextInt();
+				if (cid == 0) break;
+				s1.addCourse(dao.getCourseById(cid));
+			}
 			
 			dao.update(s1);
 			

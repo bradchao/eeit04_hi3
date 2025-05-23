@@ -60,7 +60,7 @@ public class SCDao {
 		}		
 	}
 
-	public void update(Student student) {
+	public Student update(Student student) {
 		Transaction transaction = null;
 		try(Session session = 
 				HibernateUtil.getSessionFactory().openSession()){
@@ -69,15 +69,20 @@ public class SCDao {
 			session.merge(student);
 			
 			transaction.commit();
+			
+			return getById(student.getId());
+			
+			
 		}catch(Exception e) {
 			System.out.println(e);
 			if (transaction != null) {
 				transaction.rollback();
 			}
+			return null;
 		}		
 	}
 	
-	public Student getById(int id) {
+	public Student getById(long id) {
 		try(Session session = 
 				HibernateUtil.getSessionFactory().openSession()){
 			return session.get(Student.class, id);
