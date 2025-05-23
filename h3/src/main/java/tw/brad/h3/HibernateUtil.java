@@ -4,11 +4,13 @@ package tw.brad.h3;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import tw.brad.model.Course;
 import tw.brad.model.Cust;
 import tw.brad.model.Gift;
 import tw.brad.model.Member;
 import tw.brad.model.MemberInfo;
 import tw.brad.model.Order;
+import tw.brad.model.Student;
 
 public class HibernateUtil {
 	private static SessionFactory sessionFactory;
@@ -24,6 +26,8 @@ public class HibernateUtil {
 				config.addAnnotatedClass(Gift.class);
 				config.addAnnotatedClass(Cust.class);
 				config.addAnnotatedClass(Order.class);
+				config.addAnnotatedClass(Student.class);
+				config.addAnnotatedClass(Course.class);
 				
 				sessionFactory = config.buildSessionFactory();
 				
