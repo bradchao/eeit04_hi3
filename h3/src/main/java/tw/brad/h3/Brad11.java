@@ -10,9 +10,10 @@ public class Brad11 {
 
 	public static void main(String[] args) {
 		CustDao custDao = new CustDao();
-		Cust cust = custDao.getById(1);
+		Cust cust = custDao.getById(9);
 		if (cust != null) {
-			//System.out.println(cust.getOrders().size());
+			System.out.println(cust.getOrders().size());
+			
 			Order order1 = new Order();
 			order1.setOrderDate(new Date());
 			
